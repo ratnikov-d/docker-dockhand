@@ -1,0 +1,19 @@
+services:
+  dockhand:
+    image: fnsys/dockhand:latest
+    container_name: dockhand
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dockhand_data:/app/data
+      - /docker-stacks:/docker-stacks
+networks:
+  default:
+    external: true
+    name: shared-net
+
+volumes:
+  dockhand_data:
+    name: dockhand_data
